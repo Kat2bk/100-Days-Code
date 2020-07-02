@@ -55,13 +55,18 @@
 //     ReactDOM.render(template, appRoot);
 // }
 
-var toggleButton = function toggleButton() {
+
+var visible = false;
+
+var toggleVisible = function toggleVisible() {
+    visible = !visible;
     var paragraph = document.querySelector(".info");
     if (paragraph.style.display === "none") {
         paragraph.style.display = "block";
     } else {
         paragraph.style.display = "none";
     }
+    renderApp();
 };
 
 var app = document.getElementById("app");
@@ -77,8 +82,8 @@ function renderApp() {
         ),
         React.createElement(
             "button",
-            { className: "btn", onClick: toggleButton },
-            "Show Details"
+            { className: "btn", onClick: toggleVisible },
+            visible ? 'Hide details' : 'Show details'
         ),
         React.createElement(
             "p",

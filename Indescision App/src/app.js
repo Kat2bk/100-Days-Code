@@ -53,13 +53,18 @@
 //     ReactDOM.render(template, appRoot);
 // }
 
-const toggleButton = () => {
+
+let visible = false;
+
+const toggleVisible = () => {
+    visible = !visible;
     const paragraph = document.querySelector(".info");
     if (paragraph.style.display === "none") {
         paragraph.style.display = "block";
     } else {
         paragraph.style.display = "none";
     }
+    renderApp();
 }
 
 const app = document.getElementById("app");
@@ -68,7 +73,7 @@ function renderApp() {
     const visibility = (
         <div>
             <h1>Visibility Toggle</h1>
-            <button className="btn" onClick={toggleButton}>Show Details</button>
+            <button className="btn" onClick={toggleVisible}>{visible ? 'Hide details' : 'Show details'}</button>
             <p className="info" style={{display: 'none'}}>This is some important information</p>
         </div>
     )
