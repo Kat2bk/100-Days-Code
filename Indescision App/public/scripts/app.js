@@ -10,6 +10,17 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // this contains JSX that will be compiled in the scripts folder
 
+var obj = {
+    name: 'Katherine',
+    getName: function getName() {
+        return this.name;
+    }
+};
+
+var getName = obj.getName.bind({ obj: obj });
+
+console.log(getName());
+
 var IndecisionApp = function (_React$Component) {
     _inherits(IndecisionApp, _React$Component);
 
@@ -32,7 +43,7 @@ var IndecisionApp = function (_React$Component) {
                 React.createElement(Header, { title: title, subtitle: subtitle }),
                 React.createElement(Action, null),
                 React.createElement(Options, { options: options }),
-                React.createElement(AddOption, null)
+                React.createElement(AddOption, { options: options })
             );
         }
     }]);
@@ -82,6 +93,11 @@ var Action = function (_React$Component3) {
     }
 
     _createClass(Action, [{
+        key: 'handleButton',
+        value: function handleButton() {
+            alert('handle');
+        }
+    }, {
         key: 'render',
         value: function render() {
             return React.createElement(
@@ -89,7 +105,7 @@ var Action = function (_React$Component3) {
                 null,
                 React.createElement(
                     'button',
-                    null,
+                    { onClick: this.handleButton },
                     'What should I do?'
                 )
             );
@@ -109,11 +125,21 @@ var Options = function (_React$Component4) {
     }
 
     _createClass(Options, [{
+        key: 'handleRemove',
+        value: function handleRemove() {
+            alert('remove all');
+        }
+    }, {
         key: 'render',
         value: function render() {
             return React.createElement(
                 'div',
                 null,
+                React.createElement(
+                    'button',
+                    { onClick: this.handleRemove },
+                    'Remove All'
+                ),
                 React.createElement(
                     'h3',
                     null,
@@ -144,12 +170,8 @@ var Option = function (_React$Component5) {
             return React.createElement(
                 'div',
                 null,
-                React.createElement(
-                    'ol',
-                    null,
-                    'Option: ',
-                    this.props.option
-                )
+                'Option: ',
+                this.props.option
             );
         }
     }]);
@@ -167,6 +189,17 @@ var AddOption = function (_React$Component6) {
     }
 
     _createClass(AddOption, [{
+        key: 'handleSubmit',
+        value: function handleSubmit(event) {
+            event.preventDefault();
+            var optionValue = event.target.elements.option.value;
+            if (optionValue) {
+                options.push(optionValue);
+                event.target.elements.option.value = '';
+                console.log(optionValue);
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
             return React.createElement(
@@ -174,8 +207,13 @@ var AddOption = function (_React$Component6) {
                 null,
                 React.createElement(
                     'form',
-                    null,
-                    React.createElement('input', { type: 'text' })
+                    { onSubmit: this.handleSubmit },
+                    React.createElement('input', { type: 'text', name: 'option' }),
+                    React.createElement(
+                        'button',
+                        null,
+                        'Add Option'
+                    )
                 )
             );
         }
