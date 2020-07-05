@@ -1,16 +1,5 @@
 // this contains JSX that will be compiled in the scripts folder
 
-const obj = {
-    name: 'Katherine',
-    getName() {
-        return this.name;
-    }
-}
-
-const getName = obj.getName.bind({obj});
-
-console.log(getName())
-
 class IndecisionApp extends React.Component {
     render() {
         const title = 'Indecision';
@@ -56,8 +45,12 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleRemove = this.handleRemove.bind(this);
+    }
     handleRemove() {
-        alert('remove all')
+        console.log(this.props.options)
     }
     render() {
         return (
