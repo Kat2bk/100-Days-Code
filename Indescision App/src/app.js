@@ -1,18 +1,40 @@
 // this contains JSX that will be compiled in the scripts folder
 
 class IndecisionApp extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleDeleteOption = this.handleDeleteOption.bind(this);
+        this.handleRandomPick = this.handleRandomPick.bind(this);
+        this.state = {
+            options: ['One', 'Two']
+        }
+    }
+
+    handleRandomPick() {
+        this.setState(() => {
+        const randomOption = Math.floor(Math.random() * this.state.options.length);
+        const optionArray = this.state.options[randomOption];
+            alert(optionArray)
+        })
+    }
+
+    handleDeleteOption() {
+        this.setState(() => {
+            return {
+                options: []
+            }
+        })
+    }
+
     render() {
         const title = 'Indecision';
         const subtitle = 'Computer Organizer';
-        const options = ['One', 'Two', 'Three'];
-
-
         return (
             <div>
             <Header title={title} subtitle={subtitle}/>
-            <Action />
-            <Options options={options}/>
-            <AddOption options={options}/>
+            <Action hasOptions={this.state.options.length > 0} handleRandomPick={this.handleRandomPick}/>
+            <Options options={this.state.options} handleDeleteOption={this.handleDeleteOption}/>
+            <AddOption />
             </div>
         )
     }
@@ -32,30 +54,23 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
-    handleButton() {
-        alert('handle')
-    }
     render() {
         return (
             <div>
-            <button onClick={this.handleButton}>What should I do?</button>
+            <button onClick={this.props.handleRandomPick}
+            disabled={!this.props.hasOptions}
+            >What should I do?</button>
             </div>
         )
     }
 }
 
 class Options extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleRemove = this.handleRemove.bind(this);
-    }
-    handleRemove() {
-        console.log(this.props.options)
-    }
+
     render() {
         return (
             <div>
-            <button onClick={this.handleRemove}>Remove All</button>
+            <button onClick={this.props.handleDeleteOption}>Remove All</button>
             <h3>Options</h3>
             {this.props.options.map((option) => {
              return <Option option={option} key={option}/>
