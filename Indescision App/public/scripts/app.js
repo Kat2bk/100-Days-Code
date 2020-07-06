@@ -42,9 +42,7 @@ var IndecisionApp = function (_React$Component) {
         key: 'handleDeleteOption',
         value: function handleDeleteOption() {
             this.setState(function () {
-                return {
-                    options: props.options
-                };
+                return { options: [] };
             });
         }
     }, {
@@ -56,10 +54,14 @@ var IndecisionApp = function (_React$Component) {
                 return 'this option already exists';
             }
 
+            // this.setState((prevState) => {
+            //     return {
+            //         options: prevState.options.concat([option])
+            //     }
+            // })
+
             this.setState(function (prevState) {
-                return {
-                    options: prevState.options.concat([option])
-                };
+                return { options: prevState.options.concat([option]) };
             });
         }
     }, {
