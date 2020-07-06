@@ -22,7 +22,7 @@ class IndecisionApp extends React.Component {
     handleDeleteOption() {
         this.setState(() => {
             return {
-                options: []
+                options: props.options
             }
         })
     }
@@ -42,11 +42,10 @@ class IndecisionApp extends React.Component {
     }
 
     render() {
-        const title = 'Indecision';
         const subtitle = 'Computer Organizer';
         return (
             <div>
-            <Header title={title} subtitle={subtitle}/>
+            <Header subtitle={subtitle}/>
             <Action hasOptions={this.state.options.length > 0} handleRandomPick={this.handleRandomPick}/>
             <Options options={this.state.options} handleDeleteOption={this.handleDeleteOption}/>
             <AddOption handleAddOption={this.handleAddOption}/>
@@ -59,10 +58,16 @@ const Header = (props) => {
     return (
         <div>
         <h1>{props.title}</h1>
-        <h2>{props.subtitle}</h2>
+        {props.subtitle && <h2>{props.subtitle}</h2>}
         </div>
     )
 }
+
+Header.defaultProps = {
+    title: 'Indecision App'
+}
+
+
 
 const Action = (props) => {
     return (
