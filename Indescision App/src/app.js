@@ -12,6 +12,19 @@ class IndecisionApp extends React.Component {
         }
     }
 
+    componentDidMount() {
+        console.log('fetching data');
+    }
+
+    componentDidUpdate() {
+        console.log('saving data');
+    }
+
+    componentWillUnmount() {
+        console.log('component Unmounted');
+    }
+
+
     handleRandomPick() {
         this.setState(() => {
         const randomOption = Math.floor(Math.random() * this.state.options.length);
@@ -38,12 +51,6 @@ class IndecisionApp extends React.Component {
         } else if (this.state.options.indexOf(option) > -1) {
             return 'this option already exists';
         }
-
-        // this.setState((prevState) => {
-        //     return {
-        //         options: prevState.options.concat([option])
-        //     }
-        // })
 
         this.setState((prevState) => ({options: prevState.options.concat([option]) }));
     }
