@@ -29,6 +29,21 @@ var IndecisionApp = function (_React$Component) {
     }
 
     _createClass(IndecisionApp, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            console.log('fetching data');
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate() {
+            console.log('saving data');
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            console.log('component Unmounted');
+        }
+    }, {
         key: 'handleRandomPick',
         value: function handleRandomPick() {
             var _this2 = this;
@@ -65,12 +80,6 @@ var IndecisionApp = function (_React$Component) {
             } else if (this.state.options.indexOf(option) > -1) {
                 return 'this option already exists';
             }
-
-            // this.setState((prevState) => {
-            //     return {
-            //         options: prevState.options.concat([option])
-            //     }
-            // })
 
             this.setState(function (prevState) {
                 return { options: prevState.options.concat([option]) };
