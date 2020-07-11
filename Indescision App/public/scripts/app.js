@@ -21,7 +21,9 @@ var IndecisionApp = function (_React$Component) {
         _this.handleDeleteOption = _this.handleDeleteOption.bind(_this);
         _this.handleRandomPick = _this.handleRandomPick.bind(_this);
         _this.handleAddOption = _this.handleAddOption.bind(_this);
+
         _this.handleSingleOption = _this.handleSingleOption(_this);
+
         _this.state = {
             options: props.options
         };
@@ -29,6 +31,21 @@ var IndecisionApp = function (_React$Component) {
     }
 
     _createClass(IndecisionApp, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            console.log('fetching data');
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate() {
+            console.log('saving data');
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            console.log('component Unmounted');
+        }
+    }, {
         key: 'handleRandomPick',
         value: function handleRandomPick() {
             var randomOption = Math.floor(Math.random() * this.state.options.length);
@@ -39,7 +56,15 @@ var IndecisionApp = function (_React$Component) {
         key: 'handleDeleteOption',
         value: function handleDeleteOption() {
             this.setState(function () {
+                return { options: [] };
+            });
+        }
+    }, {
+        key: 'deleteSingleOption',
+        value: function deleteSingleOption(optionToRemove) {
+            this.setState(function (prevState) {
                 return {
+
                     options: []
                 };
             });
@@ -50,6 +75,7 @@ var IndecisionApp = function (_React$Component) {
             this.setState(function (prevState) {
                 return {
                     options: prevState.options.filter(function (optionToRemove) {
+
                         return optionToRemove !== option;
                     })
                 };
@@ -65,9 +91,7 @@ var IndecisionApp = function (_React$Component) {
             }
 
             this.setState(function (prevState) {
-                return {
-                    options: prevState.options.concat([option])
-                };
+                return { options: prevState.options.concat([option]) };
             });
         }
     }, {
@@ -79,8 +103,10 @@ var IndecisionApp = function (_React$Component) {
                 null,
                 React.createElement(Header, { subtitle: subtitle }),
                 React.createElement(Action, { hasOptions: this.state.options.length > 0, handleRandomPick: this.handleRandomPick }),
+
                 React.createElement(Options, { options: this.state.options, handleDeleteOption: this.handleDeleteOption, handleSingleOption: this.handleSingleOption
                 }),
+
                 React.createElement(AddOption, { handleAddOption: this.handleAddOption })
             );
         }
@@ -145,7 +171,10 @@ var Options = function Options(props) {
         ),
         props.options.map(function (option) {
             return React.createElement(Option, { option: option, key: option,
+
                 handleSingleOption: props.handleSingleOption
+
+
             });
         })
     );
@@ -156,7 +185,10 @@ var Option = function Option(props) {
     return React.createElement(
         'div',
         null,
+        'Option: ',
+        props.option,
         React.createElement(
+
             'p',
             null,
             'Option: ',
@@ -167,6 +199,7 @@ var Option = function Option(props) {
             { onClick: function onClick() {
                     return props.handleSingleOption(props.optionText);
                 } },
+
             'Remove'
         )
     );
