@@ -21,7 +21,7 @@ var IndecisionApp = function (_React$Component) {
         _this.handleDeleteOption = _this.handleDeleteOption.bind(_this);
         _this.handleRandomPick = _this.handleRandomPick.bind(_this);
         _this.handleAddOption = _this.handleAddOption.bind(_this);
-        _this.handleSingleOption = _this.handleSingleOption(_this);
+        _this.handleSingleOption = _this.handleSingleOption.bind(_this);
         _this.state = {
             options: props.options
         };
@@ -45,17 +45,6 @@ var IndecisionApp = function (_React$Component) {
             });
         }
     }, {
-        key: 'handleSingleOption',
-        value: function handleSingleOption(option) {
-            this.setState(function (prevState) {
-                return {
-                    options: prevState.options.filter(function (optionToRemove) {
-                        return optionToRemove !== option;
-                    })
-                };
-            });
-        }
-    }, {
         key: 'handleAddOption',
         value: function handleAddOption(option) {
             if (!option) {
@@ -71,6 +60,18 @@ var IndecisionApp = function (_React$Component) {
             });
         }
     }, {
+        key: 'handleSingleOption',
+        value: function handleSingleOption(option) {
+            console.log("single option", option);
+            this.setState(function (prevState) {
+                return {
+                    options: prevState.options.filter(function (optionToRemove) {
+                        return optionToRemove !== option;
+                    })
+                };
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             var subtitle = 'Computer Organizer';
@@ -79,8 +80,7 @@ var IndecisionApp = function (_React$Component) {
                 null,
                 React.createElement(Header, { subtitle: subtitle }),
                 React.createElement(Action, { hasOptions: this.state.options.length > 0, handleRandomPick: this.handleRandomPick }),
-                React.createElement(Options, { options: this.state.options, handleDeleteOption: this.handleDeleteOption, handleSingleOption: this.handleSingleOption
-                }),
+                React.createElement(Options, { options: this.state.options, handleDeleteOption: this.handleDeleteOption, handleSingleOption: this.handleSingleOption }),
                 React.createElement(AddOption, { handleAddOption: this.handleAddOption })
             );
         }
@@ -129,7 +129,7 @@ var Action = function Action(props) {
 };
 
 var Options = function Options(props) {
-    console.log(props);
+    console.log("props from Options", props);
     return React.createElement(
         'div',
         null,
@@ -144,8 +144,7 @@ var Options = function Options(props) {
             'Options'
         ),
         props.options.map(function (option) {
-            return React.createElement(Option, { option: option, key: option,
-                handleSingleOption: props.handleSingleOption
+            return React.createElement(Option, { option: option, key: option, handleSingleOption: props.handleSingleOption
             });
         })
     );
@@ -164,8 +163,8 @@ var Option = function Option(props) {
         ),
         React.createElement(
             'button',
-            { onClick: function onClick() {
-                    return props.handleSingleOption(props.optionText);
+            { onClick: function onClick(event) {
+                    return props.handleSingleOption(props.option);
                 } },
             'Remove'
         )
