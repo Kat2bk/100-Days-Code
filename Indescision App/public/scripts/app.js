@@ -29,6 +29,33 @@ var IndecisionApp = function (_React$Component) {
     }
 
     _createClass(IndecisionApp, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            try {
+                var json = localStorage.getItem('options');
+                var options = JSON.parse(json);
+
+                if (options) {
+                    this.setState(function () {
+                        return { options: options };
+                    });
+                }
+            } catch (event) {}
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps, prevState) {
+            if (prevState.options.length !== this.state.options.length) {
+                var json = JSON.stringify(this.state.options);
+                localStorage.setItem('options', json);
+            }
+        }
+    }, {
+        key: 'componentWillUnMount',
+        value: function componentWillUnMount() {
+            console.log("component unmounted");
+        }
+    }, {
         key: 'handleRandomPick',
         value: function handleRandomPick() {
             var randomOption = Math.floor(Math.random() * this.state.options.length);
@@ -129,7 +156,6 @@ var Action = function Action(props) {
 };
 
 var Options = function Options(props) {
-    console.log("props from Options", props);
     return React.createElement(
         'div',
         null,
@@ -137,6 +163,11 @@ var Options = function Options(props) {
             'button',
             { onClick: props.handleDeleteOption },
             'Remove All'
+        ),
+        props.options.length === 0 && React.createElement(
+            'p',
+            null,
+            'Please enter your first option'
         ),
         React.createElement(
             'h3',
@@ -151,16 +182,11 @@ var Options = function Options(props) {
 };
 
 var Option = function Option(props) {
-    console.log("props from Option", props);
     return React.createElement(
         'div',
         null,
-        React.createElement(
-            'p',
-            null,
-            'Option: ',
-            props.option
-        ),
+        'Option: ',
+        props.option,
         React.createElement(
             'button',
             { onClick: function onClick(event) {
@@ -197,7 +223,9 @@ var AddOption = function (_React$Component2) {
                     error: error
                 };
             });
-            e.target.elements.option.value = '';
+            if (!error) {
+                e.target.elements.option.value = '';
+            }
         }
     }, {
         key: 'render',

@@ -12,6 +12,32 @@ class IndecisionApp extends React.Component {
         }
     }
 
+    componentDidMount() {
+        try {
+            const json = localStorage.getItem('options');
+            const options = JSON.parse(json);
+    
+            if (options) {
+            this.setState(() => ({ options: options}))
+            }
+        } catch (event) {
+
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.options.length !== this.state.options.length) {
+            const json = JSON.stringify(this.state.options)
+            localStorage.setItem('options', json)
+        }
+    }
+
+    componentWillUnMount() {
+        console.log("component unmounted")
+    }
+
+
+
     handleRandomPick() {
         const randomOption = Math.floor(Math.random() * this.state.options.length);
         const optionArray = this.state.options[randomOption];
@@ -88,10 +114,10 @@ const Action = (props) => {
 }
 
 const Options = (props) => {
-    console.log("props from Options",props)
     return (
         <div>
         <button onClick={props.handleDeleteOption}>Remove All</button>
+        {props.options.length === 0 && <p>Please enter your first option</p>}
         <h3>Options</h3>
             {props.options.map((option) => {
               return <Option option={option} key={option} handleSingleOption={props.handleSingleOption}
@@ -102,10 +128,9 @@ const Options = (props) => {
 }
 
 const Option = (props) => {
-    console.log("props from Option",props)
     return (
         <div>
-        <p>Option: {props.option}</p>
+        Option: {props.option}
         <button onClick={(event) => props.handleSingleOption(props.option)}>Remove</button>
         </div>
     )
@@ -129,7 +154,9 @@ class AddOption extends React.Component {
                error: error
            }
        })
-       e.target.elements.option.value = '';
+       if (!error) {
+        e.target.elements.option.value = '';
+       }
     }
 
     render() {
