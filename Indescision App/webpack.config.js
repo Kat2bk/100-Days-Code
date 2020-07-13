@@ -9,5 +9,21 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'public'),
         filename: 'bundle.js'
+    },
+    module: {
+        loaders: [
+            {
+                test: /\.(js|jsx|mjs)$/,
+                include: [
+                  /src\/*/,
+                  /node_modules\/react-native-/,
+                ],
+                loader: require.resolve('babel-loader'),
+                options: {
+                  babelrc: false,
+                  cacheDirectory: true
+                }
+            }
+        ]
     }
 }
