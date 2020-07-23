@@ -1,13 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Home from "./pages/Home";
+import Rooms from "./pages/Rooms";
+import Room from "./pages/Room";
+import Error from "./pages/Error";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-    <p>testing</p>
-      </header>
+      <div>
+      <Home />
+      <Rooms />
+      <Room />
+      <Error />
+      </div>
     </div>
   );
 }
