@@ -4,12 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "live-server public/",
+    "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
+    "build": "webpack"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "babel-preset-env": "^1.5.2",
-    "babel-preset-react": "^6.24.1"
+    "@babel/cli": "^7.10.4",
+    "@babel/plugin-syntax-jsx": "^7.10.4",
+    "@babel/plugin-transform-react-jsx": "^7.10.4",
+    "babel-cli": "^6.24.1",
+    "babel-loader": "^8.1.0",
+    "babel-preset-react": "^6.24.1",
+    "live-server": "^1.2.1",
+    "webpack": "^3.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4"
   }
 }
