@@ -1,11 +1,12 @@
 import React from "react";
+import Title from "./Title";
 
 class Services extends React.Component {
 
     render() {
         return (
             <div>
-            Hello from services
+            <Title title="services" />
             </div>
         )
     }
