@@ -6,49 +6,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './styles/index.scss';
 import './styles/base/_base.scss';
 
-const ExpenseDashboardPage = () => {
-  return (
-    <div>
-    <p>This is from my dashboard</p>
-    </div>
-  )
-}
-
-const AddExpensePage = () => {
-  return (
-    <div>
-    <p>This is from my add expense page</p>
-    </div>
-  )
-}
-
-const EditPage = () => {
-  return (
-    <div>
-    <p>This is from my edit page</p>
-    </div>
-  )
-}
-
-const HelpPage = () => {
-  return (
-    <div>
-    <p>This is from my help page</p>
-    </div>
-  )
-}
-
-const NotFoundPage = () => {
-  return (
-    <div>
-    <p>404! Not found! <Link to="/">Go Home</Link></p>
-    </div>
-  )
-}
-
 
 ReactDOM.render(
-  <BrowserRouter><App /></BrowserRouter>,
+  <Router><App /></Router>,
   document.getElementById('root')
 );
 
