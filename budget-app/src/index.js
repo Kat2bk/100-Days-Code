@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 import './styles/index.scss';
+import './styles/base/_base.scss';
 
 const ExpenseDashboardPage = () => {
   return (
