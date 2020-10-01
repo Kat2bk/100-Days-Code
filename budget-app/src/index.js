@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
+import App from "./App.js"
+import { BrowserRouter as Router } from 'react-router-dom';
 import './styles/index.scss';
 import './styles/base/_base.scss';
 
@@ -45,36 +46,9 @@ const NotFoundPage = () => {
   )
 }
 
-const Header = () => {
-  return (
-    <header>
-      <h1>Budget App</h1>
-    <NavLink to="/create" activeClassName="is-active">Add Expenses</NavLink> 
-    <NavLink to="/edit" activeClassName="is-active">Edit Expense</NavLink>
-    <NavLink to="/help" activeClassName="is-active">Help Page</NavLink>
-    <NavLink exact to="/" activeClassName="is-active">Dashboard</NavLink>
-    </header>
-  )
-}
-
-const routes = (
-  <BrowserRouter>
-  <div>
-  <Header />
-  <Switch>
-  <Route exact path="/" component={ExpenseDashboardPage} />
-  <Route path="/create" component={AddExpensePage} />
-  <Route path="/edit" component={EditPage} />
-  <Route path="/help" component={HelpPage} />
-  <Route component={NotFoundPage} />
-  </Switch>
-  </div>
-  </BrowserRouter>
-)
-
 
 ReactDOM.render(
-  routes,
+  <BrowserRouter><App /></BrowserRouter>,
   document.getElementById('root')
 );
 
