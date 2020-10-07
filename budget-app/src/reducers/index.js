@@ -1,6 +1,8 @@
 import {combineReducers} from "redux";
 import filterReducer from "./filterReducer";
+import expenseReducer from "./expenseReducer";
 
 export default combineReducers({
-    filter: filterReducer
+    filters: filterReducer,
+    expenses: expenseReducer
 });
