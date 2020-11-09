@@ -1,0 +1,81 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+html {
+    background: black;
+    font-family: 'helvetica neue';
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.panels {
+    /* margin: 0 auto; */
+    min-width: 100vh;
+    overflow: hidden;
+}
+
+.panel {
+    background: #1c558e; 
+    box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.1);
+    color: white;
+    text-align: center;
+    align-items: center;
+    transition:
+        font-size 0.6s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+        flex 0.6s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+        background 0.2s;
+    font-size: 20px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.panel1 { background-image:url(https://preview.redd.it/7kvidbeplw651.png?auto=webp&s=a03bbc1f08ed57856dcb3e565a324b59cd53e338); }
+.panel2 {background-image:url(https://cdna.artstation.com/p/assets/images/images/020/152/826/large/alec-tucker-1a.jpg?1566584436) };
+.panel3 {background-image:url(https://cdnb.artstation.com/p/assets/images/images/025/347/567/large/eric-hallquist-reborn-fl-1920x1080-crp.jpg?1585518865) };
+.panel4 {background-image:url(https://trumpwallpapers.com/wp-content/uploads/Dark-souls-wallpaper-14-3840-x-2160.jpg) };
+.panel5 {background-image:url(https://cdn.wallpapersafari.com/39/6/WP2KM9.jpg) };
+
+/* flex children */
+
+.panel > * {
+    margin: 0;
+    width: 100%;
+    transition: transform 0.3s;
+    display: flex;
+    justify-content: center;
+}
+
+.panel p {
+    text-transform: uppercase;
+    font-family: 'Amatic SC', cursive;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+    font-size: 2em;
+    padding: 10px;
+}
+
+.panel p:nth-child(2) {
+    font-size: 5em;
+  }
+
+  .panel.open {
+    font-size: 40px;
+  }
+
+  .panel > *:first-child { transform: translateX(-2200%); }
+  .panel.open-active > *:first-child {transform: translateX(0); }
+  .panel > *:last-child { transform: translateX(1200%); }
+  .panel.open-active > *:last-child { transform: translateX(0); }
+
+  .panel.open {
+    flex: 4;
+    font-size: 40px;
+  }
