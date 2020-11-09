@@ -11,7 +11,7 @@ function openActive(event) {
 }
 
 panels.forEach((panel) => {
-    panel.addEventListener('mouseover', openPanel)
+    panel.addEventListener('click', openPanel)
 })
 
 panels.forEach((panel) => {
