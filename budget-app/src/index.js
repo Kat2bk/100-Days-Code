@@ -8,10 +8,14 @@ import './styles/index.scss';
 import './styles/base/_base.scss';
 import {Provider} from "react-redux";
 import rootReducer from "./reducers";
+import {addExpense} from "./actions/expenses";
 
 const store = createStore(rootReducer);
 
-console.log(store.getState());
+store.dispatch(addExpense({ description: "water bill"}));
+store.dispatch(addExpense({ description: "gas bill"}));
+store.getState();
+
 
 ReactDOM.render(
   <Provider store={store}>
