@@ -22,7 +22,16 @@ function findCities(wordToMatch, cities) {
 
 function displayMatches() {
     const matchData = findCities(this.value, cities)
-    console.log(matchData);
+    // we want to display our data in the unordered list
+    const text = matchData.map((place) => {
+        return `
+            <li>
+            <span class="names">${place.city}, ${place.state}</span>
+            <span class="population">Pop: ${place.population}</span>
+            </li>
+        `
+    }).join('') // turns it from an array into string
+    matches.innerHTML = text;
 }
 
 const searchInput = document.querySelector('.search-bar');
