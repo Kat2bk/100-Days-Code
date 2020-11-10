@@ -12,8 +12,8 @@ input {
 }
 
 .form {
-    max-width: 300px;
-    margin: 60px auto;
+    max-width: 310px;
+    margin: 50px auto;
 }
 
 input.search-bar {
@@ -47,7 +47,7 @@ input.search-bar {
     transition: background 0.2s;
     /* background effect for search */
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     text-transform: capitalize;
     width: 100%;
 }
@@ -62,10 +62,11 @@ input.search-bar {
     background: linear-gradient(to top,  #ffffff 0%,#EFEFEF 100%);
 }
   
-  /* span.population {
-    font-size: 15px;
+  span.population {
+    font-size: 17px;
+    margin: 8px;
   }
   
-  .hl {
+  span.h1 {
     background: #ffc600;
-  } */
+  }

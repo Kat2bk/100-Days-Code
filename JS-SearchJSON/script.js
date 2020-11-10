@@ -20,14 +20,25 @@ function findCities(wordToMatch, cities) {
     })
 }
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+  
+
 function displayMatches() {
-    const matchData = findCities(this.value, cities)
+    const matchData = findCities(this.value, cities);
     // we want to display our data in the unordered list
     const text = matchData.map((place) => {
+    // we want to highlight our search
+    // create another regex 
+    const regex = new RegExp(this.value, 'gi');
+    const cityName = place.city.replace(regex, `<span class="h1">${this.value}</span>`);
+    const stateName = place.state.replace(regex, `<span class="h1">${this.value}</span>`);
+
         return `
             <li>
-            <span class="names">${place.city}, ${place.state}</span>
-            <span class="population">Pop: ${place.population}</span>
+            <span class="names">${cityName}, ${stateName}</span>
+            <span class="population">Pop: ${numberWithCommas(place.population)}</span>
             </li>
         `
     }).join('') // turns it from an array into string
